@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 
 public class God : MonoBehaviour,
-    IEventHandler<NewGodRequestEvent>
+    IEventHandler<NewRulePickedEvent>
 {
     [Header("General Settings")]
 
@@ -28,10 +28,10 @@ public class God : MonoBehaviour,
         bulleGameObject.SetActive(false);
         handGameObject.SetActive(false);
 
-        this.Subscribe<NewGodRequestEvent>();
+        this.Subscribe<NewRulePickedEvent>();
     }
 
-    void IEventHandler<NewGodRequestEvent>.Handle(NewGodRequestEvent @event)
+    void IEventHandler<NewRulePickedEvent>.Handle(NewRulePickedEvent newRulePickedEvent)
     {
         Show();
         startShowTime = Time.time;
@@ -50,7 +50,7 @@ public class God : MonoBehaviour,
     {
         bulleGameObject.SetActive(true);
         bulleAnimator.SetTrigger("Show");
-        bulleText.text = $"J'ai changé d'avis !\nMaintenant, je veux:\n{RulePicker.Instance.CurrentRule.Text}";
+        bulleText.text = $"J'ai changÃ© d'avis !\nMaintenant, je veux:\n{RulePicker.Instance.NextRule.Text}";
 
         handGameObject.SetActive(true);
         handAnimator.SetTrigger("Show");
