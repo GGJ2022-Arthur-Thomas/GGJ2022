@@ -2,17 +2,8 @@ using System;
 using UnityEngine;
 using Folder;
 
-public sealed class MonsterPicker : MonoBehaviour
+public sealed class MonsterPicker : Singleton<MonsterPicker>
 {
-    private static readonly Lazy<MonsterPicker> lazy =
-        new Lazy<MonsterPicker>(() => new MonsterPicker());
-
-    public static MonsterPicker Instance => lazy.Value;
-
-    private MonsterPicker()
-    {
-    }
-    
     [Folder]
     [SerializeField]
     private string monstersFolder;

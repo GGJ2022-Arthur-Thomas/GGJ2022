@@ -2,18 +2,9 @@ using System;
 using UnityEngine;
 using Folder;
 
-public sealed class RulePicker : MonoBehaviour,
+public sealed class RulePicker : Singleton<RulePicker>,
     IEventHandler<NewGodRequestEvent>
 {
-    private static readonly Lazy<RulePicker> lazy =
-        new Lazy<RulePicker>(() => new RulePicker());
-
-    public static RulePicker Instance => lazy.Value;
-
-    private RulePicker()
-    {
-    }
-    
     [Folder]
     [SerializeField]
     private string rulesFolder;
@@ -32,9 +23,10 @@ public sealed class RulePicker : MonoBehaviour,
         this.Subscribe<NewGodRequestEvent>();
     }
 
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
         this.UnSubscribe<NewGodRequestEvent>();
+        base.OnDestroy();
     }
     
     void IEventHandler<NewGodRequestEvent>.Handle(NewGodRequestEvent newGodRequestEvent)
