@@ -36,6 +36,6 @@ public class ScoreManager : Singleton<ScoreManager>,
             }
         }
         
-        this.Publish(new NewMonsterArrivesEvent());
+        this.Publish(new NewMonsterNeededEvent());
     }
 }
