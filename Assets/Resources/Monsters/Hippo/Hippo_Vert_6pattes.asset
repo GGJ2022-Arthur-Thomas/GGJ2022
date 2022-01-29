@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32073695af7c7e543b06ed0b8c08e13a, type: 3}
-  m_Name: Pikachu
+  m_Name: Hippo_Vert_6pattes
   m_EditorClassIdentifier: 
-  displayName: Pikrachu
-  sprite: {fileID: 21300000, guid: 7f8dc169566f2e64680fd7503c178872, type: 3}
-  description: T'as la pookie-pookie dans l'side
+  displayName: Coureur
+  sprite: {fileID: 21300000, guid: ecc479a9ec5f7d042bec2e9926a8fb40, type: 3}
+  description: "6 pattes, \xE7a trace !"

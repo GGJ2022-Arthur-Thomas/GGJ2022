@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cb28cdf152ac034c86643b217df6c0e, type: 3}
-  m_Name: BGE2
+  m_Script: {fileID: 11500000, guid: 32073695af7c7e543b06ed0b8c08e13a, type: 3}
+  m_Name: Elephant_Vert_2yeux_2queues 1
   m_EditorClassIdentifier: 
-  text: Tous les monstres issus de BGE2
-  monsters:
-  - {fileID: 11400000, guid: 4a9ed74cdfb13334facc21e82407c2e9, type: 2}
+  displayName: Paco
+  sprite: {fileID: 21300000, guid: 70e41bfd168b1cc4d800ea37f931c79f, type: 3}
+  description: "A nag\xE9 dans le m\xEAme lac que Pico."

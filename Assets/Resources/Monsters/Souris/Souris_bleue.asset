@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32073695af7c7e543b06ed0b8c08e13a, type: 3}
+  m_Name: Souris_bleue
+  m_EditorClassIdentifier: 
+  displayName: Cheezos
+  sprite: {fileID: 21300000, guid: 63e16f2045bf81247b6df1a3f8938b9c, type: 3}
+  description: "Confond le gruy\xE8re et le bleu."

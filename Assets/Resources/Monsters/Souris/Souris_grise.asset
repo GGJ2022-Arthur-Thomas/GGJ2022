@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32073695af7c7e543b06ed0b8c08e13a, type: 3}
-  m_Name: Bokkitty
+  m_Name: Souris_grise
   m_EditorClassIdentifier: 
-  displayName: Bokkitty
-  sprite: {fileID: 0}
-  description: 
+  displayName: "R\xE9mi"
+  sprite: {fileID: 21300000, guid: 668d0a1a86cc657408837c2c03a483d6, type: 3}
+  description: "C\xE9l\xE8bre chef cuistot."

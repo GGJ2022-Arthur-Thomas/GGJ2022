@@ -10,8 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9cb28cdf152ac034c86643b217df6c0e, type: 3}
-  m_Name: Parodies
+  m_Name: Rule_bleus
   m_EditorClassIdentifier: 
-  text: Tous les monstres qui sont des parodies
+  text: Tous les monstres bleus.
   monsters:
-  - {fileID: 11400000, guid: 5d4a2f84504ed6c4392584e40535c7a1, type: 2}
+  - {fileID: 11400000, guid: 7bbda6ef0fad80b4587332d04453881e, type: 2}
+  - {fileID: 11400000, guid: 04f14f8acca210946bd5dccc7cdddf1c, type: 2}
+  - {fileID: 11400000, guid: 3a76c7068dd08094db822a0266821eb5, type: 2}
+  - {fileID: 11400000, guid: 205e30eb461824e4aaf2db20dfb83010, type: 2}

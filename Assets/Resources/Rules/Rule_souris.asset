@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cb28cdf152ac034c86643b217df6c0e, type: 3}
+  m_Name: Rule_souris
+  m_EditorClassIdentifier: 
+  text: Tous les mangeurs de fromage.
+  monsters:
+  - {fileID: 11400000, guid: 205e30eb461824e4aaf2db20dfb83010, type: 2}
+  - {fileID: 11400000, guid: d855ca092b7c66148ac9ce5cbdfc7099, type: 2}
+  - {fileID: 11400000, guid: 21dcd8f1cfdc76a4f80f95268289509e, type: 2}

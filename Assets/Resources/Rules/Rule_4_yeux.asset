@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cb28cdf152ac034c86643b217df6c0e, type: 3}
+  m_Name: Rule_4_yeux
+  m_EditorClassIdentifier: 
+  text: "Tous les monstres \xE0 4 yeux."
+  monsters:
+  - {fileID: 11400000, guid: 1265920a7043080409ceea5e7626b064, type: 2}
+  - {fileID: 11400000, guid: e613329bbec4f784ea545a02ce6b6e70, type: 2}
+  - {fileID: 11400000, guid: 16dbae47819287d45bd290a2707ce77b, type: 2}
+  - {fileID: 11400000, guid: bfb755b4019667848ae1722cca3d1e80, type: 2}
