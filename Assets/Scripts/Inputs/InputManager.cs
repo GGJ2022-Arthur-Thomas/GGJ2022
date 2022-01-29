@@ -3,7 +3,13 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
+    private Array AllKeys;
     [SerializeField] private InputSet[] inputSets;
+
+    void Start()
+    {
+        AllKeys = Enum.GetValues(typeof(KeyCode));
+    }
     
     void Update()
     {
@@ -12,18 +18,18 @@ public class InputManager : MonoBehaviour
 
     private void SortMonsters()
     {
-        foreach (KeyCode keyCode in Enum.GetValues(typeof(KeyCode)))
+        foreach (KeyCode keyCode in AllKeys)
         {
             if (!Input.GetKeyDown(keyCode))
-                return;
+                continue;
             
             foreach (var inputSet in inputSets)
             {
-                if (inputSet.Contains(keyCode))
-                {
-                    this.Publish(new PlayerChoiceEvent(inputSet.IsAccepted));
-                    return;
-                }
+                if (!inputSet.Contains(keyCode))
+                    continue;
+                
+                this.Publish(new PlayerChoiceEvent(inputSet.IsAccepted));
+                return;
             }
         }
     }
