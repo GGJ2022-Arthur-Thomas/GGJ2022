@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32073695af7c7e543b06ed0b8c08e13a, type: 3}
   m_Name: Bokkitty
   m_EditorClassIdentifier: 
+  displayName: Bokkitty
+  sprite: {fileID: 0}
+  description: 
