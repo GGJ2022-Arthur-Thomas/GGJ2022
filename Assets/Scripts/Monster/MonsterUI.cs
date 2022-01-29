@@ -2,17 +2,26 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MonsterUI : MonoBehaviour
+public class MonsterUI : MonoBehaviour,
+    IEventHandler<NewMonsterArrivesEvent>
 {
-    [SerializeField] private Monster monsterData;
+    [SerializeField] private int monsterQueueOffset = 0;
 
     [SerializeField] private TMP_Text monsterNameText;
     [SerializeField] private Image monsterImage;
     [SerializeField] private TMP_Text monsterDescriptionText;
 
-    void Start()
+    private Monster monsterData;
+    
+    private void Start()
     {
-        SetMonster(monsterData);
+        UpdateMonster();
+        this.Subscribe<NewMonsterArrivesEvent>();
+    }
+
+    private void OnDestroy()
+    {
+        this.UnSubscribe<NewMonsterArrivesEvent>();
     }
 
     private void OnValidate()
@@ -20,9 +29,14 @@ public class MonsterUI : MonoBehaviour
         UpdateUI();
     }
 
-    private void SetMonster(Monster monsterData)
+    void IEventHandler<NewMonsterArrivesEvent>.Handle(NewMonsterArrivesEvent newMonsterArrivesEvent)
     {
-        this.monsterData = monsterData;
+        UpdateMonster();
+    }
+    
+    private void UpdateMonster()
+    {
+        this.monsterData = MonsterPicker.Instance.MonsterQueue[monsterQueueOffset];
         UpdateUI();
     }
 
