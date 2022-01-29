@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 namespace ExtensionMethods
 {
@@ -56,5 +58,15 @@ namespace ExtensionMethods
             return result;
         }
 
+        public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source)
+        {
+            var rnd = new System.Random();
+            return source.OrderBy(item => rnd.Next());
+        }
+        
+        public static IEnumerable<T> PutToFront<T>(this IEnumerable<T> source, T element)
+        {
+            return source.OrderBy(item => !item.Equals(element));  // OrderBy is stable
+        }
     }
 }
