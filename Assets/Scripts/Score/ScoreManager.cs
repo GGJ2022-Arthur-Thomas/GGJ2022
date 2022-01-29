@@ -1,11 +1,10 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ScoreManager : Singleton<ScoreManager>,
     IEventHandler<ValidatedChoiceEvent>
 {
     public int Score { get; private set; } = 0;
-    public int Lives { get; private set; } = 0;
+    public int Lives { get; private set; } = 10;
 
     void Start()
     {
@@ -23,10 +22,12 @@ public class ScoreManager : Singleton<ScoreManager>,
         if (validatedChoiceEvent.IsRight)
         {
             ++Score;
+            Debug.Log("Player chose correctly ! New score : " + Score);
         }
         else
         {
             --Lives;
+            Debug.Log("Player chose poorly ! New life count : " + Lives);
             
             if (Lives <= 0)
             {

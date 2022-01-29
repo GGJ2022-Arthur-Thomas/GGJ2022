@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using UnityEngine;
 
@@ -18,6 +17,7 @@ public class RuleValidator : Singleton<RuleValidator>,
     
     void IEventHandler<PlayerChoiceEvent>.Handle(PlayerChoiceEvent playerChoiceEvent)
     {
+        Debug.Log("Player decided to " + (playerChoiceEvent.IsAccepted ? "accept" : "reject"));
         this.Publish(new ValidatedChoiceEvent(IsChoiceRight(
             RulePicker.Instance.CurrentRule,
             MonsterPicker.Instance.CurrentMonster,
