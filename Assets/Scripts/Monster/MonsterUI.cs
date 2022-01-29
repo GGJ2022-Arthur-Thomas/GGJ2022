@@ -7,6 +7,8 @@ public class MonsterUI : MonoBehaviour,
 {
     [SerializeField] private int monsterQueueOffset = 0;
 
+    [SerializeField] private bool showText = false;
+    [SerializeField] private float darkness = 0.0f;
     [SerializeField] private TMP_Text monsterNameText;
     [SerializeField] private Image monsterImage;
     [SerializeField] private TMP_Text monsterDescriptionText;
@@ -15,6 +17,7 @@ public class MonsterUI : MonoBehaviour,
     
     private void Start()
     {
+        InitUI();
         UpdateMonster();
         this.Subscribe<NewMonsterArrivesEvent>();
     }
@@ -26,12 +29,24 @@ public class MonsterUI : MonoBehaviour,
 
     private void OnValidate()
     {
+        InitUI();
         UpdateUI();
     }
 
     void IEventHandler<NewMonsterArrivesEvent>.Handle(NewMonsterArrivesEvent newMonsterArrivesEvent)
     {
         UpdateMonster();
+    }
+    
+    private void InitUI()
+    {
+        if (!showText)
+        {
+            monsterNameText.gameObject.SetActive(false);
+            monsterDescriptionText.gameObject.SetActive(false);
+        }
+        
+        monsterImage.color = new Color(1.0f - darkness, 1.0f - darkness, 1.0f - darkness);
     }
     
     private void UpdateMonster()

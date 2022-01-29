@@ -158,7 +158,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9094206654522521531}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -185,7 +185,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a8cec83c6696a844890b60a4a356d1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterData: {fileID: 11400000, guid: 5d4a2f84504ed6c4392584e40535c7a1, type: 2}
+  monsterQueueOffset: 0
+  showText: 1
   monsterNameText: {fileID: 9094206654926250912}
   monsterImage: {fileID: 9094206654891067295}
   monsterDescriptionText: {fileID: 9094206653698717605}
