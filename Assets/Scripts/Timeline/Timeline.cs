@@ -169,6 +169,10 @@ public class Timeline : Singleton<Timeline>
         float previousTime = CurrentTime;
         currentDayTime += Time.deltaTime;
 
+        ////////////////////////////////// DEBUG: TO REMOVE
+        if (Input.GetKey(KeyCode.Keypad0))
+            currentDayTime += 20 * Time.deltaTime;
+
         if (HasNextGodRequest &&
             previousTime <= NextGodRequestTime && CurrentTime > NextGodRequestTime) // just passed a new god request
         {
