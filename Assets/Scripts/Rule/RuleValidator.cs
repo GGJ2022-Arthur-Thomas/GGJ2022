@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using UnityEngine;
 
-public class RuleValidator : MonoBehaviour,
+public class RuleValidator : Singleton<RuleValidator>,
     IEventHandler<PlayerChoiceEvent>
 {
     private void Start()
@@ -10,9 +10,10 @@ public class RuleValidator : MonoBehaviour,
         this.Subscribe<PlayerChoiceEvent>();
     }
 
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
         this.UnSubscribe<PlayerChoiceEvent>();
+        base.OnDestroy();
     }
     
     void IEventHandler<PlayerChoiceEvent>.Handle(PlayerChoiceEvent playerChoiceEvent)

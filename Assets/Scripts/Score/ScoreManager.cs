@@ -1,7 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-public class ScoreManager : MonoBehaviour, IEventHandler<ValidatedChoiceEvent>
+public class ScoreManager : Singleton<ScoreManager>,
+    IEventHandler<ValidatedChoiceEvent>
 {
     public int Score { get; private set; } = 0;
     public int Lives { get; private set; } = 0;
@@ -11,9 +12,10 @@ public class ScoreManager : MonoBehaviour, IEventHandler<ValidatedChoiceEvent>
         this.Subscribe<ValidatedChoiceEvent>();
     }
 
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
         this.UnSubscribe<ValidatedChoiceEvent>();
+        base.OnDestroy();
     }
 
     void IEventHandler<ValidatedChoiceEvent>.Handle(ValidatedChoiceEvent validatedChoiceEvent)

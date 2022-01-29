@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class InputManager : MonoBehaviour
+public class InputManager : Singleton<InputManager>
 {
     private Array AllKeys;
     [SerializeField] private InputSet[] inputSets;
