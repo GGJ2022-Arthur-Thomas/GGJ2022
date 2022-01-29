@@ -23,11 +23,13 @@ public class ScoreManager : Singleton<ScoreManager>,
         {
             ++Score;
             Debug.Log("Player chose correctly ! New score : " + Score);
+            this.Publish(new ScoreChangedEvent());
         }
         else
         {
             --Lives;
             Debug.Log("Player chose poorly ! New life count : " + Lives);
+            this.Publish(new LifeCountChangedEvent());
             
             if (Lives <= 0)
             {
