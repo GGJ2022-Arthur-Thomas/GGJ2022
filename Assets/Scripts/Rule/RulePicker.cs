@@ -2,7 +2,8 @@ using System;
 using UnityEngine;
 using Folder;
 
-public sealed class RulePicker : MonoBehaviour
+public sealed class RulePicker : MonoBehaviour,
+    IEventHandler<NewGodRequestEvent>
 {
     private static readonly Lazy<RulePicker> lazy =
         new Lazy<RulePicker>(() => new RulePicker());
@@ -18,18 +19,38 @@ public sealed class RulePicker : MonoBehaviour
     private string rulesFolder;
     
     private Rule[] rules;
+    private int currentRuleIndex = 0;
     
-    public Rule CurrentRule { get; private set; }
-    
+    public Rule CurrentRule => rules[currentRuleIndex];
+
     void Start()
     {
         rules = rulesFolder.LoadFolder<Rule>();
-        PickRandomRule();
+        rules.Shuffle();
+        currentRuleIndex = 0;
         Debug.Log(CurrentRule.Text);
+        this.Subscribe<NewGodRequestEvent>();
     }
 
-    private void PickRandomRule()
+    private void OnDestroy()
     {
-        CurrentRule = rules.GetRandomElement();
+        this.UnSubscribe<NewGodRequestEvent>();
+    }
+    
+    void IEventHandler<NewGodRequestEvent>.Handle(NewGodRequestEvent newGodRequestEvent)
+    {
+        PickNextRule();
+    }
+
+    private void PickNextRule()
+    {
+        ++currentRuleIndex;
+        if (currentRuleIndex >= rules.Length)
+        {
+            rules.Shuffle();
+            currentRuleIndex = 0;
+        }
+        
+        Debug.Log(CurrentRule.Text);
     }
 }

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 namespace Folder
 {
@@ -71,6 +73,12 @@ namespace Folder
 		public static int GetRandomIndex<T>(this T[] array)
 		{
 			return Random.Range(0, array.Length);
+		}
+		
+		public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source)
+		{
+			var rnd = new System.Random();
+			return source.OrderBy(item => rnd.Next());
 		}
 	}
 }
