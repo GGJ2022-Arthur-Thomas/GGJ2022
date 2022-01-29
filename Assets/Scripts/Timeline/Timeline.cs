@@ -2,7 +2,7 @@ using UnityEngine;
 using ExtensionMethods;
 using UnityEngine.UI;
 
-public class Timeline : MonoBehaviour
+public class Timeline : Singleton<Timeline>
 {
     [SerializeField] private RectTransform progressBarTransform;
     [SerializeField] private RectTransform fillTransform;
@@ -19,26 +19,45 @@ public class Timeline : MonoBehaviour
 
     private Transform daysGridTransform;
 
-    private float startTime;
-    private float totalDuration;
-    /// <summary>
-    /// Between 0 (start game) and 1 (end game)
-    /// </summary>
-    private float t;
     private bool ended;
+    private float totalDuration;
     private float progressBarWidth;
+
+    /// <summary>
+    /// Between 0 and <see cref="nbDays"/>.
+    /// </summary>
+    private int currentDayNb;
+    /// <summary>
+    /// Between 0 (start of day) and <see cref="dayDurationInSeconds"/>.
+    /// </summary>
+    private float currentDayTime;
+
+    /// <summary>
+    /// Between 0 and <see cref="totalDuration"/>.
+    /// </summary>
+    private float CurrentTime => currentDayNb * dayDurationInSeconds + currentDayTime;
+
+    /// <summary>
+    /// Between 0 (start game) and 1 (end game).
+    /// </summary>
+    private float T => CurrentTime / totalDuration;
 
     void Start()
     {
-        startTime = Time.time;
+        ended = false;
         totalDuration = nbDays * dayDurationInSeconds;
         progressBarWidth = GetWidth(progressBarTransform);
+
+        currentDayNb = 0;
+        currentDayTime = 0f;
 
         daysGridTransform = daysGridLayoutGroup.transform;
         daysGridLayoutGroup.constraintCount = nbDays;
         daysGridLayoutGroup.cellSize = new Vector2(progressBarWidth / nbDays, daysGridLayoutGroup.cellSize.y);
 
         SpawnDays();
+
+        NotifyNewDay();
     }
 
     private void SpawnDays()
@@ -58,21 +77,36 @@ public class Timeline : MonoBehaviour
         if (ended)
             return;
 
-        t = Mathf.Clamp((Time.time - startTime) / totalDuration, 0f, 1f);
+        currentDayTime += Time.deltaTime;
 
-        if (t == 1f)
+        if (currentDayTime >= dayDurationInSeconds)
         {
-            this.Publish<TimelineEndedEvent>();
-            ended = true;
-            return;
+            currentDayTime = 0f;
+            currentDayNb++;
+
+            if (currentDayNb == nbDays)
+            {
+                this.Publish<TimelineEndedEvent>();
+                ended = true;
+                return;
+            }
+            else
+            {
+                NotifyNewDay();
+            }
         }
 
         UpdateFill();
     }
 
+    private void NotifyNewDay()
+    {
+        this.Publish(new NewDayEvent(currentDayNb));
+    }
+
     private void UpdateFill()
     {
-        fillTransform.SetXSize(t * progressBarWidth);
+        fillTransform.SetXSize(T * progressBarWidth);
     }
 
     private float GetWidth(RectTransform rectTransform)
