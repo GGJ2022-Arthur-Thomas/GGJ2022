@@ -26,6 +26,6 @@ public class LifeCountUI : MonoBehaviour,
 
     private void UpdateScoreText()
     {
-        lifeCountText.text = "Lives: " + string.Concat(Enumerable.Repeat("<3 ", ScoreManager.Instance.Lives));
+        lifeCountText.text = "Lives: " + string.Concat(Enumerable.Repeat("<3 ", ScoreManager.Lives));
     }
 }

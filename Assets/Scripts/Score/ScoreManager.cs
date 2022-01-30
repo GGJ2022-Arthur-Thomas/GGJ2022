@@ -3,8 +3,8 @@
 public class ScoreManager : Singleton<ScoreManager>,
     IEventHandler<ValidatedChoiceEvent>
 {
-    public int Score { get; private set; } = 0;
-    public int Lives { get; private set; } = 10;
+    public static int Score { get; private set; } = 0;
+    public static int Lives { get; private set; } = 10;
 
     void Start()
     {
@@ -33,7 +33,7 @@ public class ScoreManager : Singleton<ScoreManager>,
             
             if (Lives <= 0)
             {
-                this.Publish(new GameOverEvent());
+                this.Publish(new DeadEvent());
                 return;
             }
         }

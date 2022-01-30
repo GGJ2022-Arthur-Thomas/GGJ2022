@@ -25,6 +25,6 @@ public class ScoreUI : MonoBehaviour,
 
     private void UpdateScoreText()
     {
-        scoreText.text = "Score: " + ScoreManager.Instance.Score;
+        scoreText.text = "Score: " + ScoreManager.Score;
     }
 }
