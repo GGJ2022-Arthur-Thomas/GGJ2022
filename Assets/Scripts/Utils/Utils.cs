@@ -12,14 +12,9 @@ public class Utils : MonoBehaviour
 #endif
     }
 
-    public void Replay()
-    {
-        GameData.ResetValues();
-        SceneManager.LoadScene(Constants.MainSceneName);
-    }
-
     public void GoToGame()
     {
+        GameData.ResetValues();
         SceneManager.LoadScene(Constants.MainSceneName);
     }
 

@@ -124,7 +124,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2396343017459482190}
         m_TargetAssemblyTypeName: Utils, Assembly-CSharp
-        m_MethodName: Replay
+        m_MethodName: GoToGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
