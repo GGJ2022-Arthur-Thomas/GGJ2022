@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Main.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Dead.unity
-    guid: 412721f8535cf9340b082fdf74f6a679
-  - enabled: 1
-    path: Assets/Scenes/TimelineEnded.unity
+    path: Assets/Scenes/End.unity
     guid: 8e1c8a0b66cfe774890421933e5f8632
   m_configObjects: {}

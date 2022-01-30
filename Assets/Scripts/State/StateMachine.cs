@@ -20,28 +20,22 @@ public class StateMachine : Singleton<StateMachine>,
     
     void IEventHandler<DeadEvent>.Handle(DeadEvent deadEvent)
     {
-        StartCoroutine(LoadDeadSceneAsync());
+        LoadEndSceneAsync();
     }
 
-    private IEnumerator LoadDeadSceneAsync()
-    {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Dead");
-
-        // Wait until the asynchronous scene fully loads
-        while (!asyncLoad.isDone)
-        {
-            yield return null;
-        }
-    }
-    
     void IEventHandler<TimelineEndedEvent>.Handle(TimelineEndedEvent timelineEndedEvent)
     {
-        StartCoroutine(LoadTimelineEndedSceneAsync());
+        LoadEndSceneAsync();
     }
 
-    private IEnumerator LoadTimelineEndedSceneAsync()
+    private void LoadEndSceneAsync()
     {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("TimelineEnded");
+        StartCoroutine(LoadSceneAsync("End"));
+    }
+
+    private IEnumerator LoadSceneAsync(string sceneName)
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
 
         // Wait until the asynchronous scene fully loads
         while (!asyncLoad.isDone)

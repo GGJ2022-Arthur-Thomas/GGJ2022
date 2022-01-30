@@ -3,9 +3,6 @@
 public class ScoreManager : Singleton<ScoreManager>,
     IEventHandler<ValidatedChoiceEvent>
 {
-    public static int Score { get; private set; } = 0;
-    public static int Lives { get; private set; } = 10;
-
     void Start()
     {
         this.Subscribe<ValidatedChoiceEvent>();
@@ -21,17 +18,17 @@ public class ScoreManager : Singleton<ScoreManager>,
     {
         if (validatedChoiceEvent.IsRight)
         {
-            ++Score;
-            Debug.Log("Player chose correctly ! New score : " + Score);
-            this.Publish(new ScoreChangedEvent(Score));
+            GameData.Score++;
+            Debug.Log("Player chose correctly ! New score : " + GameData.Score);
+            this.Publish(new ScoreChangedEvent(GameData.Score));
         }
         else
         {
-            --Lives;
-            Debug.Log("Player chose poorly ! New life count : " + Lives);
-            this.Publish(new LifeCountChangedEvent(Lives));
+            GameData.Lives--;
+            Debug.Log("Player chose poorly ! New life count : " + GameData.Lives);
+            this.Publish(new LifeCountChangedEvent(GameData.Lives));
             
-            if (Lives <= 0)
+            if (GameData.Lives <= 0)
             {
                 this.Publish(new DeadEvent());
                 return;

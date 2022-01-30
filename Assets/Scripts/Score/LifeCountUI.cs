@@ -17,7 +17,7 @@ public class LifeCountUI : MonoBehaviour,
     {
         lifeParent.ClearChildren();
 
-        for (int i = 0; i < ScoreManager.Lives; i++)
+        for (int i = 0; i < GameData.Lives; i++)
         {
             var lifeGO = Instantiate(lifePrefab, lifeParent);
             lifeGO.name = $"Life_{i}";
