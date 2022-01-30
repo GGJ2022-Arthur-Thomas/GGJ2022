@@ -797,7 +797,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4555055599866563225, guid: 8ff6d527d46923e4d91ac17bc5ce550b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4555055600709097232, guid: 8ff6d527d46923e4d91ac17bc5ce550b, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 64
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ff6d527d46923e4d91ac17bc5ce550b, type: 3}
@@ -814,7 +818,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8601616592789827304, guid: 46c20d612fea72f4c885b0f6f6277877, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8601616592789827311, guid: 46c20d612fea72f4c885b0f6f6277877, type: 3}
       propertyPath: m_Pivot.x

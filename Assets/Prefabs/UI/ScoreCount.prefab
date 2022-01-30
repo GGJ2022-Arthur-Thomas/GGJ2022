@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2b38c25da2248c1b23670a8bbdc8089, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 4141145078065237668}
+  scoreText: {fileID: 8986276821215858352}
 --- !u!1 &3106588567242912676
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,6 +347,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6269732496106848029}
   - component: {fileID: 8809569089748644826}
+  - component: {fileID: 8986276821215858352}
   - component: {fileID: 4141145078065237668}
   m_Layer: 5
   m_Name: ScoreText
@@ -382,6 +383,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8985726989516494796}
   m_CullTransparentMesh: 1
+--- !u!114 &8986276821215858352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8985726989516494796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9765f25edc573794aa986a888a114dbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textComponent: {fileID: 4141145078065237668}
+  baseString: '{0}'
 --- !u!114 &4141145078065237668
 MonoBehaviour:
   m_ObjectHideFlags: 0

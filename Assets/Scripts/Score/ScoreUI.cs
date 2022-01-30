@@ -1,14 +1,13 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ScoreUI : MonoBehaviour,
     IEventHandler<ScoreChangedEvent>
 {
-    [SerializeField] private TMP_Text scoreText;
+    [SerializeField] private TMP_ParamText scoreText;
     
-    private void Start()
+    protected virtual void Start()
     {
-        UpdateScoreText(0);
+        UpdateScoreText(GameData.Score);
         this.Subscribe<ScoreChangedEvent>();
     }
 
@@ -22,8 +21,8 @@ public class ScoreUI : MonoBehaviour,
         UpdateScoreText(@event.NewAmount);
     }
 
-    private void UpdateScoreText(int score)
+    protected void UpdateScoreText(int score)
     {
-        scoreText.text = score.ToString();
+        scoreText.SetText(score.ToString());
     }
 }
