@@ -1,8 +1,6 @@
-using UnityEngine;
 using ExtensionMethods;
+using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
-using System.Collections.Generic;
 
 public class Timeline : Singleton<Timeline>
 {
