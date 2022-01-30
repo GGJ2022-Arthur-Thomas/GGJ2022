@@ -17,4 +17,9 @@ public class Utils : MonoBehaviour
         GameData.ResetValues();
         SceneManager.LoadScene(Constants.MainSceneName);
     }
+
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene(Constants.MainMenuSceneName);
+    }
 }
