@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a180ff35938ba549a0d0b08d7e5e0c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showDuration: 3
   bulleGameObject: {fileID: 4454845037615668398}
   bulleAnimator: {fileID: 8548935609510860390}
   bulleText: {fileID: 8148740830636224847}
@@ -186,7 +187,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 400, y: 150}
+  m_AnchoredPosition: {x: 420, y: 170}
   m_SizeDelta: {x: 1024, y: 1024}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3550694869965129801
