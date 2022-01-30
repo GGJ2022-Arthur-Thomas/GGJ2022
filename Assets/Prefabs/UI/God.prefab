@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a180ff35938ba549a0d0b08d7e5e0c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showDuration: 3
+  showDuration: 5
   bulleGameObject: {fileID: 4454845037615668398}
   bulleAnimator: {fileID: 8548935609510860390}
   bulleText: {fileID: 8148740830636224847}
