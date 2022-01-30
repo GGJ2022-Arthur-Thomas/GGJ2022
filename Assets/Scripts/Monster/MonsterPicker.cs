@@ -17,6 +17,7 @@ public sealed class MonsterPicker : Singleton<MonsterPicker>,
 
     public List<Monster> MonsterQueue { get; private set; } = new List<Monster>();
     public Monster CurrentMonster => MonsterQueue[0];
+    public Monster LastMonsterInQueue => MonsterQueue[MONSTER_QUEUE_SIZE-1];
 
     void Start()
     {
