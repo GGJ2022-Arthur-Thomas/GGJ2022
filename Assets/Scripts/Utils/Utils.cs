@@ -27,4 +27,9 @@ public class Utils : MonoBehaviour
     {
         SceneManager.LoadScene(Constants.MainMenuSceneName);
     }
+
+    public void GoToCredits()
+    {
+        SceneManager.LoadScene(Constants.CreditsSceneName);
+    }
 }
