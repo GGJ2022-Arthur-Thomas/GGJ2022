@@ -16,6 +16,8 @@ public class MonsterCourt : MonoBehaviour,
     
     [SerializeField] private Transform acceptedDestination;
     [SerializeField] private Transform rejectedDestination;
+
+    [SerializeField] private Transform monstersParent;
     
     private List<MonsterUI> monstersInCourt = new List<MonsterUI>();
     private List<MonsterUI> monstersLeavingCourt = new List<MonsterUI>();
@@ -64,11 +66,12 @@ public class MonsterCourt : MonoBehaviour,
 
     private void InitMonster()
     {
-        var newMonster = Instantiate(monsterTemplate, transform);
+        var newMonster = Instantiate(monsterTemplate, monstersParent);
         var newMonsterUI = newMonster.GetComponent<MonsterUI>();
         newMonsterUI.Monster = MonsterPicker.Instance.CurrentMonster;
         newMonster.SetActive(true);
         monstersInCourt.Add(newMonsterUI);
+        UpdateUI();
     }
     
     private void SortCurrentMonster(bool isAccepted)
@@ -79,16 +82,16 @@ public class MonsterCourt : MonoBehaviour,
         CurrentMonster.SetPOI((isAccepted ? acceptedDestination : rejectedDestination).position, 3.0f);
         monstersLeavingCourt.Add(CurrentMonster);
         monstersInCourt.RemoveAt(0);
+        UpdateUI();
     }
     
     private void AcceptMonster(MonsterUI newMonster)
     {
-        newMonster.transform.parent = transform;
+        newMonster.transform.parent = monstersParent;
         newMonster.transform.SetSiblingIndex(4);
         newMonster.SetPOI(transform.position, 1.0f);
         newMonster.gameObject.GetComponent<MonsterPerspective>().SetFinalValues(1.0f, 1.0f, 1.0f);
         monstersInCourt.Add(newMonster);
-        UpdateUI();
     }
 
     private void UpdateUI()
