@@ -50,7 +50,7 @@ public class God : MonoBehaviour,
     {
         bulleGameObject.SetActive(true);
         bulleAnimator.SetTrigger("Show");
-        bulleText.text = $"J'ai changé d'avis !\nMaintenant, je veux:\n{RulePicker.Instance.NextRule.Text}";
+        bulleText.text = $"J'ai changé d'avis !\nMaintenant, je veux:\n<b>{RulePicker.Instance.NextRule.Text}</b>";
 
         handGameObject.SetActive(true);
         handAnimator.SetTrigger("Show");
