@@ -3,7 +3,7 @@ using UnityEngine;
 using Folder;
 
 public sealed class RulePicker : Singleton<RulePicker>,
-    IEventHandler<NewGodRequestEvent>, IEventHandler<NewDayEvent>
+    IEventHandler<NewGodRequestEvent>, IEventHandler<BulleHideAnimationEndedEvent>
 {
     [Folder]
     [SerializeField]
@@ -24,13 +24,13 @@ public sealed class RulePicker : Singleton<RulePicker>,
         nextRuleAnnounced = false;
         Debug.Log(CurrentRule.Text);
         this.Subscribe<NewGodRequestEvent>();
-        this.Subscribe<NewDayEvent>();
+        this.Subscribe<BulleHideAnimationEndedEvent>();
     }
 
     protected override void OnDestroy()
     {
         this.UnSubscribe<NewGodRequestEvent>();
-        this.UnSubscribe<NewDayEvent>();
+        this.UnSubscribe<BulleHideAnimationEndedEvent>();
         base.OnDestroy();
     }
     
@@ -39,7 +39,7 @@ public sealed class RulePicker : Singleton<RulePicker>,
         PickNextRule();
     }
 
-    void IEventHandler<NewDayEvent>.Handle(NewDayEvent newDayEvent)
+    void IEventHandler<BulleHideAnimationEndedEvent>.Handle(BulleHideAnimationEndedEvent newDayEvent)
     {
         if (nextRuleAnnounced)
             ApplyNextRule();
