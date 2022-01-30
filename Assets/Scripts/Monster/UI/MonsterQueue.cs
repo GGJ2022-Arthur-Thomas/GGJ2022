@@ -10,6 +10,8 @@ public class MonsterQueue : MonoBehaviour,
     [SerializeField] private float finalScale = 0.5f;
     [SerializeField] private float initialLightness = 0.0f;
     [SerializeField] private float finalLightness = 0.75f;
+    [SerializeField] private float spawnDuration = 0.1f;
+    [SerializeField] private float advanceDuration = 0.2f;
     
     [SerializeField] private GameObject monsterTemplate;
     
@@ -70,10 +72,10 @@ public class MonsterQueue : MonoBehaviour,
         
         for (var i = 0; i < monstersInQueue.Count; ++i)
         {
-            monstersInQueue[i].SetPOI(monsterQueueSlots.GetChild(i).position, 1.0f);
+            monstersInQueue[i].SetPOI(monsterQueueSlots.GetChild(i).position, advanceDuration);
             var newScale = Mathf.Lerp(initialScale, finalScale, (float)(slotCount - i - 1) / (slotCount - 1));
             var newLightness = Mathf.Lerp(initialLightness, finalLightness, (float)(slotCount - i - 1) / (slotCount - 1));
-            monstersInQueue[i].GetComponent<MonsterPerspective>().SetFinalValues(newScale, newLightness, 1.0f);
+            monstersInQueue[i].GetComponent<MonsterPerspective>().SetFinalValues(newScale, newLightness, advanceDuration);
         }
         
         this.Publish(new MonsterGoesToCourtEvent(firstMonsterInQueue));
@@ -85,10 +87,10 @@ public class MonsterQueue : MonoBehaviour,
         newMonster.transform.SetSiblingIndex(2);
         var newMonsterUI = newMonster.GetComponent<MonsterUI>();
         newMonsterUI.Monster = MonsterPicker.Instance.LastMonsterInQueue;
-        newMonsterUI.SetPOI(monsterQueueSlots.GetChild(slotCount - 1).position, 1.0f);
+        newMonsterUI.SetPOI(monsterQueueSlots.GetChild(slotCount - 1).position, spawnDuration);
         var newMonsterPerspective = newMonster.GetComponent<MonsterPerspective>();
         newMonsterPerspective.SetInitialValues(0.0f, 0.0f);
-        newMonsterPerspective.SetFinalValues(initialScale, initialLightness, 1.0f);
+        newMonsterPerspective.SetFinalValues(initialScale, initialLightness, spawnDuration);
         newMonster.SetActive(true);
         monstersInQueue.Add(newMonsterUI);
     }

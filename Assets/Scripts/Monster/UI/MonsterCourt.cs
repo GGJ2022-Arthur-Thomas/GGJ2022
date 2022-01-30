@@ -18,6 +18,10 @@ public class MonsterCourt : MonoBehaviour,
     [SerializeField] private Transform rejectedDestination;
 
     [SerializeField] private Transform monstersParent;
+
+    [SerializeField] private float addMonsterDuration = 0.3f;
+    [SerializeField] private float acceptDuration = 0.3f; 
+    [SerializeField] private float rejectDuration = 0.5f; 
     
     private List<MonsterUI> monstersInCourt = new List<MonsterUI>();
     private List<MonsterUI> monstersLeavingCourt = new List<MonsterUI>();
@@ -61,7 +65,7 @@ public class MonsterCourt : MonoBehaviour,
 
     void IEventHandler<MonsterGoesToCourtEvent>.Handle(MonsterGoesToCourtEvent monsterGoesToCourtEvent)
     {
-        AcceptMonster(monsterGoesToCourtEvent.MonsterUI);
+        AddMonster(monsterGoesToCourtEvent.MonsterUI);
     }
 
     private void InitMonster()
@@ -78,19 +82,27 @@ public class MonsterCourt : MonoBehaviour,
     {
         if (CurrentMonster == null)
             return;
+
+        if (isAccepted)
+        {
+            CurrentMonster.SetPOI(acceptedDestination.position, acceptDuration);
+        }
+        else
+        {
+            CurrentMonster.SetPOI(rejectedDestination.position, rejectDuration);
+        }
         
-        CurrentMonster.SetPOI((isAccepted ? acceptedDestination : rejectedDestination).position, 3.0f);
         monstersLeavingCourt.Add(CurrentMonster);
         monstersInCourt.RemoveAt(0);
         UpdateUI();
     }
     
-    private void AcceptMonster(MonsterUI newMonster)
+    private void AddMonster(MonsterUI newMonster)
     {
         newMonster.transform.parent = monstersParent;
         newMonster.transform.SetSiblingIndex(4);
-        newMonster.SetPOI(transform.position, 1.0f);
-        newMonster.gameObject.GetComponent<MonsterPerspective>().SetFinalValues(1.0f, 1.0f, 1.0f);
+        newMonster.SetPOI(transform.position, addMonsterDuration);
+        newMonster.gameObject.GetComponent<MonsterPerspective>().SetFinalValues(1.0f, 1.0f, addMonsterDuration);
         monstersInCourt.Add(newMonster);
     }
 
