@@ -28,11 +28,6 @@ public class Timeline : Singleton<Timeline>
     [Min(0)]
     private int maxGodRequests;
 
-    [SerializeField]
-    [Min(0)]
-    [Tooltip("In seconds.")]
-    private int minTimeBetweenGodRequests = 30;
-
     [Header("Day settings")]
     
     [SerializeField]
@@ -122,27 +117,16 @@ public class Timeline : Singleton<Timeline>
     private float[] CalculateGodRequestTimes()
     {
         int nbGodRequests = Random.Range(minGodRequests, maxGodRequests);
-        var tmpList = new List<(float, bool)>(); // = (time, takeIntoFinalResult)
+        var godRequestTimes = new float[nbGodRequests];
 
         for (int i = 0; i < nbGodRequests; i++)
         {
-            tmpList.Add((Random.Range(minTimeBetweenGodRequests, totalDuration), true));
+            godRequestTimes[i] = Random.Range(1, nbDays - 1) * dayDurationInSeconds;
         }
 
-        tmpList = tmpList.OrderBy(x => x.Item1).ToList(); // sort by time
+        System.Array.Sort(godRequestTimes);
 
-        for (int i = 1; i < nbGodRequests; i++)
-        {
-            if (tmpList[i].Item1 - tmpList[i - 1].Item1 < minTimeBetweenGodRequests)
-            {
-                tmpList[i] = (tmpList[i].Item1, false); // too close to previous, don't take into final result
-            }
-        }
-
-        // don't take into final result on sundays (god is resting)
-        tmpList = tmpList.Where(x => GetDayInWeekNb(x.Item1) != 6).ToList();
-
-        return tmpList.Where(x => x.Item2 == true).Select(x => x.Item1).ToArray();
+        return godRequestTimes;
     }
 
     /// <summary>
