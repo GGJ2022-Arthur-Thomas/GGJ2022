@@ -31,6 +31,11 @@ public class God : MonoBehaviour,
         this.Subscribe<NewRulePickedEvent>();
     }
 
+    void OnDestroy()
+    {
+        this.UnSubscribe<NewRulePickedEvent>();
+    }
+
     void IEventHandler<NewRulePickedEvent>.Handle(NewRulePickedEvent newRulePickedEvent)
     {
         Show();
