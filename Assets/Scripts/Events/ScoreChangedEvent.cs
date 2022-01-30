@@ -1,14 +1,11 @@
 public class ScoreChangedEvent : Event
 {
-    /// <summary>
-    /// Usually +1, but could be different in special occasions
-    /// </summary>
-    public int Amount { get; } = 1;
+    public int NewAmount { get; }
 
     public ScoreChangedEvent() {}
 
-    public ScoreChangedEvent(int amount)
+    public ScoreChangedEvent(int newAmount)
     {
-        Amount = amount;
+        NewAmount = newAmount;
     }
 }

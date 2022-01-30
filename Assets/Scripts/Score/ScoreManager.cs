@@ -23,7 +23,7 @@ public class ScoreManager : Singleton<ScoreManager>,
         {
             ++Score;
             Debug.Log("Player chose correctly ! New score : " + Score);
-            this.Publish(new ScoreChangedEvent());
+            this.Publish(new ScoreChangedEvent(Score));
         }
         else
         {

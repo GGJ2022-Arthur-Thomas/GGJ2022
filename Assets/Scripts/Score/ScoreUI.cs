@@ -1,5 +1,4 @@
-﻿using System;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 public class ScoreUI : MonoBehaviour,
@@ -9,7 +8,7 @@ public class ScoreUI : MonoBehaviour,
     
     private void Start()
     {
-        UpdateScoreText();
+        UpdateScoreText(0);
         this.Subscribe<ScoreChangedEvent>();
     }
 
@@ -18,13 +17,13 @@ public class ScoreUI : MonoBehaviour,
         this.UnSubscribe<ScoreChangedEvent>();
     }
 
-    void IEventHandler<ScoreChangedEvent>.Handle(ScoreChangedEvent scoreChangedEvent)
+    void IEventHandler<ScoreChangedEvent>.Handle(ScoreChangedEvent @event)
     {
-        UpdateScoreText();
+        UpdateScoreText(@event.NewAmount);
     }
 
-    private void UpdateScoreText()
+    private void UpdateScoreText(int score)
     {
-        scoreText.text = "Score: " + ScoreManager.Score;
+        scoreText.text = score.ToString();
     }
 }
