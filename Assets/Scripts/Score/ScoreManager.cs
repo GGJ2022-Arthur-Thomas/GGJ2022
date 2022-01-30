@@ -29,7 +29,7 @@ public class ScoreManager : Singleton<ScoreManager>,
         {
             --Lives;
             Debug.Log("Player chose poorly ! New life count : " + Lives);
-            this.Publish(new LifeCountChangedEvent());
+            this.Publish(new LifeCountChangedEvent(Lives));
             
             if (Lives <= 0)
             {

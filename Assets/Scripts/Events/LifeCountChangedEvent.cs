@@ -1,14 +1,11 @@
 public class LifeCountChangedEvent : Event
 {
-    /// <summary>
-    /// Usually -1, but could be different in special occasions
-    /// </summary>
-    public int Amount { get; } = -1;
+    public int NewAmount { get; }
 
     public LifeCountChangedEvent() {}
 
-    public LifeCountChangedEvent(int amount)
+    public LifeCountChangedEvent(int newAmount)
     {
-        Amount = amount;
+        NewAmount = newAmount;
     }
 }

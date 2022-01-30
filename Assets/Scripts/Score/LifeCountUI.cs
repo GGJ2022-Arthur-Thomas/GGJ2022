@@ -1,17 +1,28 @@
-﻿using System;
-using System.Linq;
-using TMPro;
+﻿using ExtensionMethods;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class LifeCountUI : MonoBehaviour,
     IEventHandler<LifeCountChangedEvent>
 {
-    [SerializeField] private TMP_Text lifeCountText;
-    
+    [SerializeField] private GameObject lifePrefab;
+    [SerializeField] private Transform lifeParent;
+
     private void Start()
     {
-        UpdateScoreText();
+        SpawnLives();
         this.Subscribe<LifeCountChangedEvent>();
+    }
+
+    private void SpawnLives()
+    {
+        lifeParent.ClearChildren();
+
+        for (int i = 0; i < ScoreManager.Lives; i++)
+        {
+            var lifeGO = Instantiate(lifePrefab, lifeParent);
+            lifeGO.name = $"Life_{i}";
+        }
     }
 
     private void OnDestroy()
@@ -19,13 +30,8 @@ public class LifeCountUI : MonoBehaviour,
         this.UnSubscribe<LifeCountChangedEvent>();
     }
 
-    void IEventHandler<LifeCountChangedEvent>.Handle(LifeCountChangedEvent lifeCountChangedEvent)
+    void IEventHandler<LifeCountChangedEvent>.Handle(LifeCountChangedEvent @event)
     {
-        UpdateScoreText();
-    }
-
-    private void UpdateScoreText()
-    {
-        lifeCountText.text = "Lives: " + string.Concat(Enumerable.Repeat("<3 ", ScoreManager.Lives));
+        Destroy(lifeParent.GetChild(lifeParent.childCount - 1).gameObject);
     }
 }
