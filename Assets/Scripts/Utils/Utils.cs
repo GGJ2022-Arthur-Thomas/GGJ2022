@@ -18,6 +18,11 @@ public class Utils : MonoBehaviour
         SceneManager.LoadScene(Constants.MainSceneName);
     }
 
+    public void GoToGame()
+    {
+        SceneManager.LoadScene(Constants.MainSceneName);
+    }
+
     public void GoToMainMenu()
     {
         SceneManager.LoadScene(Constants.MainMenuSceneName);
