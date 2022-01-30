@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: Tous les monstres bleus.
   monsters:
+  - {fileID: 11400000, guid: e5e22f6fe56069f4893bb52414391df4, type: 2}
   - {fileID: 11400000, guid: 7bbda6ef0fad80b4587332d04453881e, type: 2}
   - {fileID: 11400000, guid: 04f14f8acca210946bd5dccc7cdddf1c, type: 2}
   - {fileID: 11400000, guid: 3a76c7068dd08094db822a0266821eb5, type: 2}
+  - {fileID: 11400000, guid: 00dc2350226f8cb47893b0ddd34e0c30, type: 2}
   - {fileID: 11400000, guid: 205e30eb461824e4aaf2db20dfb83010, type: 2}
+  - {fileID: 11400000, guid: 6c314678d448a8a4dacb1d6a8203a048, type: 2}

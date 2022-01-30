@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32073695af7c7e543b06ed0b8c08e13a, type: 3}
-  m_Name: Girafe_Vert_2pattes_2queues_4yeux
+  m_Name: Chat_rouge
   m_EditorClassIdentifier: 
-  displayName: Pistache
-  sprite: {fileID: 21300000, guid: ecd331f53db65104e80d8c602b77f64a, type: 3}
-  description: "A nag\xE9 trop pr\xE8s des eaux us\xE9es."
+  displayName: Ch'Eve
+  sprite: {fileID: 21300000, guid: 1af69cdbaf64e474c903e91073134e8e, type: 3}
+  description: "A \xE9t\xE9 cr\xE9\xE9 pour r\xE9gner sur l'Univers."
