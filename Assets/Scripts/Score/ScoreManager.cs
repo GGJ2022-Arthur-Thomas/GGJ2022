@@ -30,11 +30,11 @@ public class ScoreManager : Singleton<ScoreManager>,
             
             if (GameData.Lives <= 0)
             {
-                this.Publish(new DeadEvent());
+                this.Publish<DeadEvent>();
                 return;
             }
         }
         
-        this.Publish(new NewMonsterNeededEvent());
+        this.Publish<NewMonsterNeededEvent>();
     }
 }

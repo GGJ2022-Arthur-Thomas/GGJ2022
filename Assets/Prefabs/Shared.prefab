@@ -232,7 +232,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4397528044881082672, guid: e1bf6e75bea5a0741bb99375bcf52067, type: 3}
       propertyPath: m_Name
-      value: StateMachine
+      value: EndManager
       objectReference: {fileID: 0}
     - target: {fileID: 4397528044881082687, guid: e1bf6e75bea5a0741bb99375bcf52067, type: 3}
       propertyPath: m_RootOrder

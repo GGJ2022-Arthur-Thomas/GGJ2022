@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Utils : MonoBehaviour
 {
@@ -15,16 +14,16 @@ public class Utils : MonoBehaviour
     public void GoToGame()
     {
         GameData.ResetValues();
-        SceneManager.LoadScene(Constants.GameSceneName);
+        SceneLoader.GoToGame();
     }
 
     public void GoToMainMenu()
     {
-        SceneManager.LoadScene(Constants.MainMenuSceneName);
+        SceneLoader.GoToMainMenu();
     }
 
     public void GoToCredits()
     {
-        SceneManager.LoadScene(Constants.CreditsSceneName);
+        SceneLoader.GoToCredits();
     }
 }
