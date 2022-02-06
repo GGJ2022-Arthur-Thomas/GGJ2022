@@ -48,7 +48,7 @@ public sealed class RulePicker : Singleton<RulePicker>,
     private void PickNextRule()
     {
         nextRuleAnnounced = true;
-        this.Publish(new NewRulePickedEvent());
+        this.Publish<NewRulePickedEvent>();
         Debug.Log(NextRule.Text);
     }
 
@@ -64,7 +64,7 @@ public sealed class RulePicker : Singleton<RulePicker>,
             currentRuleIndex = 0;
         }
         
-        this.Publish(new NewCurrentRuleEvent());
+        this.Publish<NewCurrentRuleEvent>();
         Debug.Log(CurrentRule.Text);
     }
 }

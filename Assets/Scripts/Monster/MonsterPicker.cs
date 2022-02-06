@@ -51,7 +51,7 @@ public sealed class MonsterPicker : Singleton<MonsterPicker>,
         AddRandomUniqueMonsterToQueue();
         MonsterQueue.RemoveAt(0);
         Debug.Log("New current monster is: " + CurrentMonster.DisplayName);
-        this.Publish(new NewMonsterArrivesEvent());
+        this.Publish<NewMonsterArrivesEvent>();
     }
 
     private void AddRandomUniqueMonsterToQueue()
