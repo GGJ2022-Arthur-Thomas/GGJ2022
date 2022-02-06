@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine.Audio;
-using TMPro;
 
 #if UNITY_EDITOR
 using UnityEditor;

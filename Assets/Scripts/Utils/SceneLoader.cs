@@ -37,6 +37,7 @@ public static class SceneLoader
     private static IEnumerator LoadSceneAsyncCorout(string sceneName)
     {
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+        StaticEvents.Publish(typeof(SceneLoader), new SceneLoadingEvent(sceneName));
 
         // Wait until the asynchronous scene fully loads
         while (!asyncLoad.isDone)

@@ -5,7 +5,7 @@ internal delegate void CustomEventHandler<T>(T @event);
 
 public interface IEvent
 {
-    object sender { get; set; }
+    object Sender { get; set; }
 }
 
 public interface IEventHandler<T> where T : IEvent
@@ -17,7 +17,7 @@ public interface IEventHandler<T> where T : IEvent
 
 public abstract class Event : IEvent
 {
-    public object sender { get; set; }
+    public object Sender { get; set; }
 
     protected Event() { } // This makes users not having to implement a default constructor
 }
@@ -43,21 +43,36 @@ public static class IEventHandlerExtensions
 public static class ObjectExtensions
 {
     // We want this method to be accessible from any object
-
-    public static void Publish<T>(this object sender, T @event = default(T)) where T : IEvent, new() // Ensure the event has a parameterless constructor by using 'new()' constraint
+    public static void Publish<T>(this object sender, T @event = default) where T : IEvent, new() // Ensure the event has a parameterless constructor by using 'new()' constraint
     {
-        if (EqualityComparer<T>.Default.Equals(@event, default(T))) // We gave no constructor for this event
+        Publisher.Publish(sender, @event);
+    }
+}
+
+public static class StaticEvents
+{
+    public static void Publish<T>(Type callerType, T @event = default) where T : IEvent, new() // Ensure the event has a parameterless constructor by using 'new()' constraint
+    {
+        Publisher.Publish(callerType, @event);
+    }
+}
+
+internal static class Publisher
+{
+    internal static void Publish<T>(object sender, T @event = default) where T : IEvent, new() // Ensure the event has a parameterless constructor by using 'new()' constraint
+    {
+        if (EqualityComparer<T>.Default.Equals(@event, default)) // We gave no constructor for this event
         {
             @event = new T(); // We construct the event with its default constructor
         }
-        @event.sender = sender;
+        @event.Sender = sender;
         EventHandlersManager<T>.RaiseEvent(@event);
     }
 }
 
 internal class EventHandlersManager<T>
 {
-    private static Dictionary<Type, EventElement<T>> eventHandlers = new Dictionary<Type, EventElement<T>>();
+    private readonly static Dictionary<Type, EventElement<T>> eventHandlers = new Dictionary<Type, EventElement<T>>();
 
 
     public static void Add(CustomEventHandler<T> handler)
