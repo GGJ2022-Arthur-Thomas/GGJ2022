@@ -15,7 +15,7 @@ public class Utils : MonoBehaviour
     public void GoToGame()
     {
         GameData.ResetValues();
-        SceneManager.LoadScene(Constants.MainSceneName);
+        SceneManager.LoadScene(Constants.GameSceneName);
     }
 
     public void GoToMainMenu()
