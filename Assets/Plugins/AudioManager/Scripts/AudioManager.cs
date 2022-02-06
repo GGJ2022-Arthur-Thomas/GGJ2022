@@ -164,7 +164,11 @@ public class AudioManager : MonoBehaviour
 
         if (instance != null)
         {
-            Debug.LogWarning("Only one instance of AudioManager can be run at one time !");
+            if (!dontDestroyOnLoad)
+            {
+                Debug.LogWarning("Only one instance of AudioManager can be run at one time !");
+            }
+            
             return;
         }
 

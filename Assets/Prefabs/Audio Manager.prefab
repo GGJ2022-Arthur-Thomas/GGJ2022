@@ -46,6 +46,7 @@ MonoBehaviour:
   playlists: []
   audioClips:
   - {fileID: 8300000, guid: f97d0268f169eeb43a8744b5febbaabf, type: 3}
+  - {fileID: 8300000, guid: 16e5641de3844084b8a64d40e5a99ff7, type: 3}
   previewChannel: {fileID: 0}
   playlistFromWhichTheClipIsPreviewed:
     title: 
@@ -53,10 +54,10 @@ MonoBehaviour:
     sounds: []
     volume: 0
     isFolded: 0
-  playMusicOnStart: 0
-  musicVolumeOnStart: 1
+  playMusicOnStart: 1
+  musicVolumeOnStart: 0.7
   dontDestroyOnLoad: 1
-  musicOnStart: click
+  musicOnStart: the-gonk
   loopMusicOnStart: 1
   maxSoundsAtATime: 2
   mustFade: 1
