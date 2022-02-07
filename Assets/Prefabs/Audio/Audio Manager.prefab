@@ -46,6 +46,7 @@ MonoBehaviour:
   playlists: []
   audioClips:
   - {fileID: 8300000, guid: f97d0268f169eeb43a8744b5febbaabf, type: 3}
+  - {fileID: 8300000, guid: bf6f6b782c1269c458e264c42aa2b8d3, type: 3}
   - {fileID: 8300000, guid: 311ff8ebedbbfd1499ece6e559f9a316, type: 3}
   - {fileID: 8300000, guid: a53a546eb22bb2d4081f037ef265a9ca, type: 3}
   - {fileID: 8300000, guid: 16e5641de3844084b8a64d40e5a99ff7, type: 3}

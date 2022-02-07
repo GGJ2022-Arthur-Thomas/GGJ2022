@@ -3,13 +3,21 @@ using UnityEngine;
 using System.Linq;
 
 public class AudioHandler : Singleton<AudioHandler>,
-    IEventHandler<SceneLoadingEvent>
+    IEventHandler<SceneLoadingEvent>,
+    IEventHandler<NewGodRequestEvent>
 {
+    [Header("Scenes")]
+
     [SerializeField]
     private string startingSceneName;
 
     [SerializeField]
     private List<SceneMusicSettings> sceneMusics;
+
+    [Header("God")]
+
+    [SerializeField]
+    private AudioSettings godIntervention;
 
     void Start()
     {
@@ -21,10 +29,12 @@ public class AudioHandler : Singleton<AudioHandler>,
         }
 
         this.Subscribe<SceneLoadingEvent>();
+        this.Subscribe<NewGodRequestEvent>();
     }
 
     protected override void OnDestroy()
     {
+        this.UnSubscribe<NewGodRequestEvent>();
         this.UnSubscribe<SceneLoadingEvent>();
         base.OnDestroy();
     }
@@ -34,6 +44,11 @@ public class AudioHandler : Singleton<AudioHandler>,
         PlaySceneMusic(@event.SceneName);
     }
 
+    void IEventHandler<NewGodRequestEvent>.Handle(NewGodRequestEvent @event)
+    {
+        PlaySound(godIntervention);
+    }
+
     private void PlaySceneMusic(string sceneName)
     {
         SceneMusicSettings musicPair = sceneMusics.FirstOrDefault(p => p.SceneName == sceneName);
@@ -41,25 +56,35 @@ public class AudioHandler : Singleton<AudioHandler>,
         if (musicPair != null)
         {
             AudioManager.SetMusicVolume(musicPair.Volume);
-            AudioManager.ChangeMusic(musicPair.MusicClip);
+            AudioManager.ChangeMusic(musicPair.Clip);
         }
     }
 
+    private void PlaySound(AudioSettings settings)
+    {
+        AudioManager.PlaySound(settings.Clip.name, settings.Volume);
+    }
+
     [System.Serializable]
-    class SceneMusicSettings
+    class SceneMusicSettings : AudioSettings
     {
         [SerializeField]
         private string sceneName;
 
+        public string SceneName => sceneName;
+    }
+
+    [System.Serializable]
+    class AudioSettings
+    {
         [SerializeField]
-        private AudioClip musicClip;
+        private AudioClip clip;
 
         [SerializeField]
         [Range(0f, 1f)]
         private float volume = 1f;
 
-        public string SceneName => sceneName;
-        public AudioClip MusicClip => musicClip;
+        public AudioClip Clip => clip;
         public float Volume => volume;
     }
 }

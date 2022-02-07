@@ -48,9 +48,12 @@ MonoBehaviour:
   logErrorIfMultipleInstancesDetected: 0
   startingSceneName: MainMenu
   sceneMusics:
-  - sceneName: MainMenu
-    musicClip: {fileID: 8300000, guid: 16e5641de3844084b8a64d40e5a99ff7, type: 3}
+  - clip: {fileID: 8300000, guid: 16e5641de3844084b8a64d40e5a99ff7, type: 3}
     volume: 0.7
-  - sceneName: Game
-    musicClip: {fileID: 8300000, guid: a53a546eb22bb2d4081f037ef265a9ca, type: 3}
+    sceneName: MainMenu
+  - clip: {fileID: 8300000, guid: a53a546eb22bb2d4081f037ef265a9ca, type: 3}
     volume: 0.7
+    sceneName: Game
+  godIntervention:
+    clip: {fileID: 8300000, guid: bf6f6b782c1269c458e264c42aa2b8d3, type: 3}
+    volume: 0.25
