@@ -2,17 +2,36 @@ using UnityEngine;
 
 public class EndingChooser : MonoBehaviour
 {
-    [Tooltip("Will be activated if win.")]
-    [SerializeField] private GameObject winGameObject;
+    [SerializeField]
+    private EndingSettings winSettings;
 
-    [Tooltip("Will be activated if lose.")]
-    [SerializeField] private GameObject loseGameObject;
+    [SerializeField]
+    private EndingSettings loseSettings;
 
     void Start()
     {
         bool win = GameData.Lives > 0;
 
-        winGameObject.SetActive(win);
-        loseGameObject.SetActive(!win);
+        winSettings.GameObject.SetActive(win);
+        loseSettings.GameObject.SetActive(!win);
+
+        bool fade = AudioManager.GetFade();
+        AudioManager.SetFade(false);
+        AudioManager.ChangeMusic(win ? winSettings.Music : loseSettings.Music);
+        AudioManager.SetFade(fade);
+    }
+
+    [System.Serializable]
+    public class EndingSettings
+    {
+        [SerializeField]
+        private GameObject gameObject;
+
+        [SerializeField]
+        private AudioClip music;
+
+
+        public GameObject GameObject => gameObject;
+        public AudioClip Music => music;
     }
 }

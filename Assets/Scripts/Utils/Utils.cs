@@ -22,11 +22,6 @@ public class Utils : MonoBehaviour
         SceneLoader.GoToMainMenu();
     }
 
-    public void GoToCredits()
-    {
-        SceneLoader.GoToCredits();
-    }
-
     public void PlayClickSound()
     {
         AudioManager.PlaySound("click");

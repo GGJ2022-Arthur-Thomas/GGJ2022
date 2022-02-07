@@ -6,7 +6,6 @@ public static class SceneLoader
 {
     public const string GameSceneName = "Game";
     public const string MainMenuSceneName = "MainMenu";
-    public const string CreditsSceneName = "Credits";
     public const string EndSceneName = "End";
 
     public static void GoToGame()
@@ -17,11 +16,6 @@ public static class SceneLoader
     public static void GoToMainMenu()
     {
         LoadSceneAsync(MainMenuSceneName);
-    }
-
-    public static void GoToCredits()
-    {
-        LoadSceneAsync(CreditsSceneName);
     }
 
     public static void GoToEnd()

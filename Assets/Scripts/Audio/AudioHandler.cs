@@ -6,10 +6,20 @@ public class AudioHandler : Singleton<AudioHandler>,
     IEventHandler<SceneLoadingEvent>
 {
     [SerializeField]
+    private string startingSceneName;
+
+    [SerializeField]
     private List<SceneMusicSettings> sceneMusics;
 
     void Start()
     {
+        if (!string.IsNullOrEmpty(startingSceneName))
+        {
+            AudioManager.SetFade(false);
+            PlaySceneMusic(startingSceneName);
+            AudioManager.SetFade(true);
+        }
+
         this.Subscribe<SceneLoadingEvent>();
     }
 
@@ -21,7 +31,12 @@ public class AudioHandler : Singleton<AudioHandler>,
 
     void IEventHandler<SceneLoadingEvent>.Handle(SceneLoadingEvent @event)
     {
-        SceneMusicSettings musicPair = sceneMusics.FirstOrDefault(p => p.SceneName == @event.SceneName);
+        PlaySceneMusic(@event.SceneName);
+    }
+
+    private void PlaySceneMusic(string sceneName)
+    {
+        SceneMusicSettings musicPair = sceneMusics.FirstOrDefault(p => p.SceneName == sceneName);
 
         if (musicPair != null)
         {

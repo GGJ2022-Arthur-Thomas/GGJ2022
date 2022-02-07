@@ -46,6 +46,7 @@ MonoBehaviour:
   dontDestroyOnLoad: 1
   destroyIfOtherInstancesDetected: 1
   logErrorIfMultipleInstancesDetected: 0
+  startingSceneName: MainMenu
   sceneMusics:
   - sceneName: MainMenu
     musicClip: {fileID: 8300000, guid: 16e5641de3844084b8a64d40e5a99ff7, type: 3}

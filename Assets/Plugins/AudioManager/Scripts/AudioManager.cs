@@ -1034,6 +1034,14 @@ public class AudioManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Returns whether the AudioManager is set to fade or not.
+    /// </summary>
+    public static bool GetFade()
+    {
+        return mustFadeStatic;
+    }
+
+    /// <summary>
     /// Gets an AudioClip from its name in the AudioManager's list.
     /// </summary>
     /// <param name="soundOrMusicName">The name of the sound or the music you want the AudioClip. It has to be in the AudioManager's list.</param>
