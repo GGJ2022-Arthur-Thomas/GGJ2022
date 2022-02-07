@@ -748,10 +748,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   winSettings:
     gameObject: {fileID: 2045356996}
-    music: {fileID: 8300000, guid: aa7a53fd5251ff247b0b11be2bafcfd2, type: 3}
+    sound: {fileID: 8300000, guid: aa7a53fd5251ff247b0b11be2bafcfd2, type: 3}
+    volume: 0.8
   loseSettings:
     gameObject: {fileID: 1122801811}
-    music: {fileID: 8300000, guid: 311ff8ebedbbfd1499ece6e559f9a316, type: 3}
+    sound: {fileID: 8300000, guid: 311ff8ebedbbfd1499ece6e559f9a316, type: 3}
+    volume: 0.8
 --- !u!1 &2045356996 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4555055599866563225, guid: 8ff6d527d46923e4d91ac17bc5ce550b, type: 3}

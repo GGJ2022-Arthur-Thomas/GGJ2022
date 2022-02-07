@@ -47,10 +47,13 @@ MonoBehaviour:
   audioClips:
   - {fileID: 8300000, guid: f97d0268f169eeb43a8744b5febbaabf, type: 3}
   - {fileID: 8300000, guid: bf6f6b782c1269c458e264c42aa2b8d3, type: 3}
+  - {fileID: 8300000, guid: 0b20d0f5662603144874b9fa24a88448, type: 3}
   - {fileID: 8300000, guid: 311ff8ebedbbfd1499ece6e559f9a316, type: 3}
   - {fileID: 8300000, guid: a53a546eb22bb2d4081f037ef265a9ca, type: 3}
   - {fileID: 8300000, guid: 16e5641de3844084b8a64d40e5a99ff7, type: 3}
   - {fileID: 8300000, guid: aa7a53fd5251ff247b0b11be2bafcfd2, type: 3}
+  - {fileID: 8300000, guid: 2b483fda353ce9842b6f0719037d2a8f, type: 3}
+  - {fileID: 8300000, guid: 34f7a6e67509b204abc04fd4c591d2fd, type: 3}
   previewChannel: {fileID: 0}
   playlistFromWhichTheClipIsPreviewed:
     title: 
@@ -63,7 +66,7 @@ MonoBehaviour:
   dontDestroyOnLoad: 1
   musicOnStart: the-gonk
   loopMusicOnStart: 1
-  maxSoundsAtATime: 2
+  maxSoundsAtATime: 8
   mustFade: 1
   fadeIn:
     serializedVersion: 2

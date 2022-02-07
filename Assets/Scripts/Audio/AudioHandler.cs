@@ -4,6 +4,8 @@ using System.Linq;
 
 public class AudioHandler : Singleton<AudioHandler>,
     IEventHandler<SceneLoadingEvent>,
+    IEventHandler<PlayerChoiceEvent>,
+    IEventHandler<PlayerLostLifeEvent>,
     IEventHandler<NewGodRequestEvent>
 {
     [Header("Scenes")]
@@ -19,6 +21,18 @@ public class AudioHandler : Singleton<AudioHandler>,
     [SerializeField]
     private AudioSettings godIntervention;
 
+    [Header("Player")]
+
+    [SerializeField]
+    private AudioSettings playerAccepted;
+
+    [SerializeField]
+    private AudioSettings playerRejected;
+
+    [SerializeField]
+    private AudioSettings playerLostLife;
+
+
     void Start()
     {
         if (!string.IsNullOrEmpty(startingSceneName))
@@ -29,12 +43,16 @@ public class AudioHandler : Singleton<AudioHandler>,
         }
 
         this.Subscribe<SceneLoadingEvent>();
+        this.Subscribe<PlayerChoiceEvent>();
+        this.Subscribe<PlayerLostLifeEvent>();
         this.Subscribe<NewGodRequestEvent>();
     }
 
     protected override void OnDestroy()
     {
         this.UnSubscribe<NewGodRequestEvent>();
+        this.UnSubscribe<PlayerLostLifeEvent>();
+        this.UnSubscribe<PlayerChoiceEvent>();
         this.UnSubscribe<SceneLoadingEvent>();
         base.OnDestroy();
     }
@@ -42,6 +60,16 @@ public class AudioHandler : Singleton<AudioHandler>,
     void IEventHandler<SceneLoadingEvent>.Handle(SceneLoadingEvent @event)
     {
         PlaySceneMusic(@event.SceneName);
+    }
+
+    void IEventHandler<PlayerChoiceEvent>.Handle(PlayerChoiceEvent @event)
+    {
+        PlaySoundWithRandomPitch(@event.IsAccepted ? playerAccepted : playerRejected);
+    }
+
+    void IEventHandler<PlayerLostLifeEvent>.Handle(PlayerLostLifeEvent @event)
+    {
+        PlaySound(playerLostLife);
     }
 
     void IEventHandler<NewGodRequestEvent>.Handle(NewGodRequestEvent @event)
@@ -63,6 +91,11 @@ public class AudioHandler : Singleton<AudioHandler>,
     private void PlaySound(AudioSettings settings)
     {
         AudioManager.PlaySound(settings.Clip.name, settings.Volume);
+    }
+
+    private void PlaySoundWithRandomPitch(AudioSettings settings)
+    {
+        AudioManager.PlaySoundWithRandomPitch(settings.Clip.name, settings.Volume, 0.2f);
     }
 
     [System.Serializable]

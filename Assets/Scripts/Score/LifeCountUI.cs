@@ -2,7 +2,7 @@
 using UnityEngine;
 
 public class LifeCountUI : MonoBehaviour,
-    IEventHandler<LifeCountChangedEvent>
+    IEventHandler<PlayerLostLifeEvent>
 {
     [SerializeField] private GameObject lifePrefab;
     [SerializeField] private Transform lifeParent;
@@ -10,7 +10,7 @@ public class LifeCountUI : MonoBehaviour,
     private void Start()
     {
         SpawnLives();
-        this.Subscribe<LifeCountChangedEvent>();
+        this.Subscribe<PlayerLostLifeEvent>();
     }
 
     private void SpawnLives()
@@ -26,10 +26,10 @@ public class LifeCountUI : MonoBehaviour,
 
     private void OnDestroy()
     {
-        this.UnSubscribe<LifeCountChangedEvent>();
+        this.UnSubscribe<PlayerLostLifeEvent>();
     }
 
-    void IEventHandler<LifeCountChangedEvent>.Handle(LifeCountChangedEvent @event)
+    void IEventHandler<PlayerLostLifeEvent>.Handle(PlayerLostLifeEvent @event)
     {
         Destroy(lifeParent.GetChild(lifeParent.childCount - 1).gameObject);
     }

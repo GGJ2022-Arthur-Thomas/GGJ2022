@@ -26,7 +26,7 @@ public class ScoreManager : Singleton<ScoreManager>,
         {
             GameData.Lives--;
             Debug.Log("Player chose poorly ! New life count : " + GameData.Lives);
-            this.Publish(new LifeCountChangedEvent(GameData.Lives));
+            this.Publish<PlayerLostLifeEvent>();
             
             if (GameData.Lives <= 0)
             {

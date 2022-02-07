@@ -17,7 +17,8 @@ public class EndingChooser : MonoBehaviour
 
         bool fade = AudioManager.GetFade();
         AudioManager.SetFade(false);
-        AudioManager.ChangeMusic(win ? winSettings.Music : loseSettings.Music);
+        EndingSettings settings = win ? winSettings : loseSettings;
+        AudioManager.ChangeMusic(settings.Sound, directlyFadeIn: true);
         AudioManager.SetFade(fade);
     }
 
@@ -28,10 +29,10 @@ public class EndingChooser : MonoBehaviour
         private GameObject gameObject;
 
         [SerializeField]
-        private AudioClip music;
+        private AudioClip sound;
 
 
         public GameObject GameObject => gameObject;
-        public AudioClip Music => music;
+        public AudioClip Sound => sound;
     }
 }
