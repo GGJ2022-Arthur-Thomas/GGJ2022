@@ -2,35 +2,37 @@ using UnityEngine;
 
 public class EndingScoreUI : ScoreUI
 {
-    [SerializeField] private float delayBetweenTicks = 0.02f;
+    [SerializeField]
+    private float scoreIncreaseDuration = 2f;
 
-    private int beginScore;
+    private int currentScore;
     private int endScore;
-    private float lastTickTime;
+
+    private float totalDuration;
 
     protected override void Start()
     {
-        beginScore = 0;
+        currentScore = 0;
+        UpdateScoreText(currentScore);
         endScore = GameData.Score;
-        UpdateScoreText(beginScore);
-        //endScore = 250; // DEBUG
+        //endScore = 650; // DEBUG
     }
 
     void Update()
     {
-        if (beginScore == endScore)
+        if (totalDuration == scoreIncreaseDuration)
             return;
 
-        if (Time.time - lastTickTime > delayBetweenTicks)
-        {
-            Tick();
-            lastTickTime = Time.time;
-        }
-    }
+        totalDuration += Time.deltaTime;
 
-    private void Tick()
-    {
-        beginScore++;
-        UpdateScoreText(beginScore);
+        currentScore = (int)((totalDuration / scoreIncreaseDuration) * endScore);
+
+        if (totalDuration >= scoreIncreaseDuration)
+        {
+            totalDuration = scoreIncreaseDuration;
+            currentScore = endScore;
+        }
+
+        UpdateScoreText(currentScore);
     }
 }

@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 7877259536913226024}
-  delayBetweenTicks: 0.02
+  scoreIncreaseDuration: 2
 --- !u!1 &4555055600709097238
 GameObject:
   m_ObjectHideFlags: 0
