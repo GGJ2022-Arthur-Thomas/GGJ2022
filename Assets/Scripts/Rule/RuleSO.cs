@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Rule", fileName = "Rule")]
-public class Rule : ScriptableObject
+public class RuleSO : ScriptableObject
 {
     [SerializeField]
     [TextArea]

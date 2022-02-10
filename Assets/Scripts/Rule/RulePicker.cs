@@ -9,16 +9,16 @@ public sealed class RulePicker : Singleton<RulePicker>,
     [SerializeField]
     private string rulesFolder;
     
-    private Rule[] rules;
+    private RuleSO[] rules;
     private int currentRuleIndex = 0;
     private bool nextRuleAnnounced = false;
     
-    public Rule CurrentRule => rules[currentRuleIndex];
-    public Rule NextRule => nextRuleAnnounced ? rules[currentRuleIndex + 1] : null;
+    public RuleSO CurrentRule => rules[currentRuleIndex];
+    public RuleSO NextRule => nextRuleAnnounced ? rules[currentRuleIndex + 1] : null;
 
     void Start()
     {
-        rules = rulesFolder.LoadFolder<Rule>();
+        rules = rulesFolder.LoadFolder<RuleSO>();
         rules.Shuffle();
         currentRuleIndex = 0;
         nextRuleAnnounced = false;

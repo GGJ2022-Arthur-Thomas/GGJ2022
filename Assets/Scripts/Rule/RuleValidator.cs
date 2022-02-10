@@ -24,7 +24,7 @@ public class RuleValidator : Singleton<RuleValidator>,
             playerChoiceEvent.IsAccepted)));
     }
     
-    private bool IsChoiceRight(Rule rule, MonsterSO monster, bool isAccepted)
+    private bool IsChoiceRight(RuleSO rule, MonsterSO monster, bool isAccepted)
     {
         return rule.Monsters.Contains(monster) == isAccepted;
     }
