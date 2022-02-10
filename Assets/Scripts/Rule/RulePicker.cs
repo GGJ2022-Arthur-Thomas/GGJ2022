@@ -22,7 +22,7 @@ public sealed class RulePicker : Singleton<RulePicker>,
         rules.Shuffle();
         currentRuleIndex = 0;
         nextRuleAnnounced = false;
-        Debug.Log(CurrentRule.Text);
+        Logger.Log(CurrentRule.Text);
         this.Subscribe<NewGodRequestEvent>();
         this.Subscribe<BulleHideAnimationEndedEvent>();
     }
@@ -49,7 +49,7 @@ public sealed class RulePicker : Singleton<RulePicker>,
     {
         nextRuleAnnounced = true;
         this.Publish<NewRulePickedEvent>();
-        Debug.Log(NextRule.Text);
+        Logger.Log(NextRule.Text);
     }
 
     private void ApplyNextRule()
@@ -65,6 +65,6 @@ public sealed class RulePicker : Singleton<RulePicker>,
         }
         
         this.Publish<NewCurrentRuleEvent>();
-        Debug.Log(CurrentRule.Text);
+        Logger.Log(CurrentRule.Text);
     }
 }

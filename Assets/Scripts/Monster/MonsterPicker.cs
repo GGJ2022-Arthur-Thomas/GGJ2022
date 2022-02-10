@@ -23,7 +23,7 @@ public sealed class MonsterPicker : Singleton<MonsterPicker>,
     {
         monsters = monstersFolder.LoadFolder<Monster>();
         InitMonsterQueue();
-        Debug.Log(CurrentMonster.DisplayName);
+        Logger.Log(CurrentMonster.DisplayName);
         this.Subscribe<NewMonsterNeededEvent>();
     }
 
@@ -50,7 +50,7 @@ public sealed class MonsterPicker : Singleton<MonsterPicker>,
     {
         AddRandomUniqueMonsterToQueue();
         MonsterQueue.RemoveAt(0);
-        Debug.Log("New current monster is: " + CurrentMonster.DisplayName);
+        Logger.Log("New current monster is: " + CurrentMonster.DisplayName);
         this.Publish<NewMonsterArrivesEvent>();
     }
 
@@ -62,6 +62,6 @@ public sealed class MonsterPicker : Singleton<MonsterPicker>,
             pick = monsters.GetRandomElement();
         }
         MonsterQueue.Add(pick);
-        Debug.Log("Added " + pick.DisplayName + " at the end of the queue!");
+        Logger.Log("Added " + pick.DisplayName + " at the end of the queue!");
     }
 }

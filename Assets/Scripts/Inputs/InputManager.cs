@@ -23,14 +23,14 @@ public class InputManager : Singleton<InputManager>
             if (!Input.GetKeyDown(keyCode))
                 continue;
             
-            Debug.Log("Player pressed " + keyCode + " key");
+            //Debug.Log("Player pressed " + keyCode + " key");
             
             foreach (var inputSet in inputSets)
             {
                 if (!inputSet.Contains(keyCode))
                     continue;
                 
-                Debug.Log("Key " + keyCode + " is in inputSet " + (inputSet.IsAccepted ? "accepted" : "rejected"));
+                //Debug.Log("Key " + keyCode + " is in inputSet " + (inputSet.IsAccepted ? "accepted" : "rejected"));
                 
                 this.Publish(new PlayerChoiceEvent(inputSet.IsAccepted));
                 return;
