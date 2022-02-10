@@ -10,18 +10,18 @@ public sealed class MonsterPicker : Singleton<MonsterPicker>,
     [SerializeField]
     private string monstersFolder;
     
-    private Monster[] monsters;
+    private MonsterSO[] monsters;
 
     private const int MONSTER_QUEUE_SIZE = 5;
     private const int MONSTER_QUEUE_PICK_MAX_RETRIES = 5;
 
-    public List<Monster> MonsterQueue { get; private set; } = new List<Monster>();
-    public Monster CurrentMonster => MonsterQueue[0];
-    public Monster LastMonsterInQueue => MonsterQueue[MONSTER_QUEUE_SIZE-1];
+    public List<MonsterSO> MonsterQueue { get; private set; } = new List<MonsterSO>();
+    public MonsterSO CurrentMonster => MonsterQueue[0];
+    public MonsterSO LastMonsterInQueue => MonsterQueue[MONSTER_QUEUE_SIZE-1];
 
     void Start()
     {
-        monsters = monstersFolder.LoadFolder<Monster>();
+        monsters = monstersFolder.LoadFolder<MonsterSO>();
         InitMonsterQueue();
         Logger.Log(CurrentMonster.DisplayName);
         this.Subscribe<NewMonsterNeededEvent>();

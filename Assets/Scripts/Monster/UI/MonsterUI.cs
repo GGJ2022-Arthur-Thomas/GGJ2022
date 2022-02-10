@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MonsterUI : MonoBehaviour
 {
-    private Monster monster;
+    private MonsterSO monster;
     private Vector3 initialPosition;
     private Vector3 poi;
     private float timeSinceStart = 1.0f;
@@ -31,7 +31,7 @@ public class MonsterUI : MonoBehaviour
         };
     }
 
-    internal Monster Monster
+    internal MonsterSO Monster
     {
         get => monster;
         set

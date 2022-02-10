@@ -10,9 +10,9 @@ public class Rule : ScriptableObject
     private string text;
     
     [SerializeField]
-    private Monster[] monsters;
+    private MonsterSO[] monsters;
 
 
     public string Text => text;
-    public Monster[] Monsters => monsters;
+    public MonsterSO[] Monsters => monsters;
 }

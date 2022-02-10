@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Monster", fileName = "Monster")]
-public class Monster : ScriptableObject
+public class MonsterSO : ScriptableObject
 {
     [SerializeField]
     private string displayName;
