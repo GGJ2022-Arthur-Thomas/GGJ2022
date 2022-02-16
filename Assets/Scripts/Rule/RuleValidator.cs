@@ -1,5 +1,4 @@
 using System.Linq;
-using UnityEngine;
 
 public class RuleValidator : Singleton<RuleValidator>,
     IEventHandler<PlayerChoiceEvent>
@@ -15,13 +14,13 @@ public class RuleValidator : Singleton<RuleValidator>,
         base.OnDestroy();
     }
     
-    void IEventHandler<PlayerChoiceEvent>.Handle(PlayerChoiceEvent playerChoiceEvent)
+    void IEventHandler<PlayerChoiceEvent>.Handle(PlayerChoiceEvent @event)
     {
-        Logger.Log("Player decided to " + (playerChoiceEvent.IsAccepted ? "accept" : "reject"));
+        Logger.Log("Player decided to " + (@event.IsAccepted ? "accept" : "reject"));
         this.Publish(new ValidatedChoiceEvent(IsChoiceRight(
             RulePicker.Instance.CurrentRule,
             MonsterPicker.Instance.CurrentMonster,
-            playerChoiceEvent.IsAccepted)));
+            @event.IsAccepted)));
     }
     
     private bool IsChoiceRight(RuleSO rule, MonsterSO monster, bool isAccepted)

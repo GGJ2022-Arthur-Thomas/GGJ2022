@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 
 public class God : MonoBehaviour,
-    IEventHandler<NewRulePickedEvent>
+    IEventHandler<NewGodRequestEvent>
 {
     [Header("General Settings")]
 
@@ -28,15 +28,15 @@ public class God : MonoBehaviour,
         bulleGameObject.SetActive(false);
         handGameObject.SetActive(false);
 
-        this.Subscribe<NewRulePickedEvent>();
+        this.Subscribe<NewGodRequestEvent>();
     }
 
     void OnDestroy()
     {
-        this.UnSubscribe<NewRulePickedEvent>();
+        this.UnSubscribe<NewGodRequestEvent>();
     }
 
-    void IEventHandler<NewRulePickedEvent>.Handle(NewRulePickedEvent newRulePickedEvent)
+    void IEventHandler<NewGodRequestEvent>.Handle(NewGodRequestEvent @event)
     {
         Show();
         startShowTime = Time.time;

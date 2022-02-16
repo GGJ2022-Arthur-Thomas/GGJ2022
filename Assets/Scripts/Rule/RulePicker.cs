@@ -1,9 +1,10 @@
 using ExtensionMethods;
 using UnityEngine;
 using Folder;
+using System.Linq;
 
 public sealed class RulePicker : Singleton<RulePicker>,
-    IEventHandler<NewGodRequestEvent>, IEventHandler<BulleHideAnimationEndedEvent>
+    IEventHandler<BulleHideAnimationEndedEvent>
 {
     [Folder]
     [SerializeField]
@@ -11,60 +12,55 @@ public sealed class RulePicker : Singleton<RulePicker>,
     
     private RuleSO[] rules;
     private int currentRuleIndex = 0;
-    private bool nextRuleAnnounced = false;
     
     public RuleSO CurrentRule => rules[currentRuleIndex];
-    public RuleSO NextRule => nextRuleAnnounced ? rules[currentRuleIndex + 1] : null;
+    public RuleSO NextRule => rules[currentRuleIndex + 1];
 
     void Start()
     {
         rules = rulesFolder.LoadFolder<RuleSO>();
-        rules.Shuffle();
-        currentRuleIndex = 0;
-        nextRuleAnnounced = false;
+        ShuffleRules();
+
         Logger.Log(CurrentRule.Text);
-        this.Subscribe<NewGodRequestEvent>();
+
         this.Subscribe<BulleHideAnimationEndedEvent>();
     }
 
     protected override void OnDestroy()
     {
-        this.UnSubscribe<NewGodRequestEvent>();
         this.UnSubscribe<BulleHideAnimationEndedEvent>();
+
         base.OnDestroy();
-    }
-    
-    void IEventHandler<NewGodRequestEvent>.Handle(NewGodRequestEvent newGodRequestEvent)
-    {
-        PickNextRule();
     }
 
     void IEventHandler<BulleHideAnimationEndedEvent>.Handle(BulleHideAnimationEndedEvent newDayEvent)
     {
-        if (nextRuleAnnounced)
-            ApplyNextRule();
+        PickNewRule();
     }
 
-    private void PickNextRule()
+    private void PickNewRule()
     {
-        nextRuleAnnounced = true;
-        this.Publish<NewRulePickedEvent>();
-        Logger.Log(NextRule.Text);
-    }
-
-    private void ApplyNextRule()
-    {
-        nextRuleAnnounced = false;
-        ++currentRuleIndex;
+        currentRuleIndex++;
         if (currentRuleIndex >= rules.Length - 1)
         {
             var savedCurrentRule = CurrentRule;
-            rules.Shuffle();
-            rules.PutToFront(savedCurrentRule);
+            ShuffleRules();
+            PutRuleToFront(savedCurrentRule);
             currentRuleIndex = 0;
         }
         
         this.Publish<NewCurrentRuleEvent>();
         Logger.Log(CurrentRule.Text);
+    }
+
+    private void ShuffleRules()
+    {
+        var rnd = new System.Random();
+        rules = rules.OrderBy(item => rnd.Next()).ToArray();
+    }
+
+    private void PutRuleToFront(RuleSO rule)
+    {
+        rules = rules.OrderBy(item => !item.Equals(rule)).ToArray();  // OrderBy is stable
     }
 }
