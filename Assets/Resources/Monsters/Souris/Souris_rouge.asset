@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: Mousclor
   sprite: {fileID: 21300000, guid: cb50b46838c0caa47bf33d52787a37da, type: 3}
+  size: 0.5
   description: Plie les tapettes en deux.

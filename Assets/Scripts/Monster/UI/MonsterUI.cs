@@ -1,5 +1,4 @@
 ﻿using System;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,11 +6,18 @@ public class MonsterUI : MonoBehaviour
 {
     private MonsterSO monster;
     private Vector3 initialPosition;
+    private Vector2 initialImageScale;
     private Vector3 poi;
     private float timeSinceStart = 1.0f;
     private float duration = 1.0f;
 
-    [SerializeField] private Image monsterImage;
+    [SerializeField]
+    private Image monsterImage;
+
+    private void Start()
+    {
+        initialImageScale = monsterImage.rectTransform.localScale;
+    }
 
     private void Update()
     {
@@ -38,6 +44,7 @@ public class MonsterUI : MonoBehaviour
         {
             monster = value;
             monsterImage.sprite = value.Sprite;
+            monsterImage.rectTransform.localScale = initialImageScale * value.Size;
         }
     }
 

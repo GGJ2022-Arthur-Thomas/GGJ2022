@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: Coureur
   sprite: {fileID: 21300000, guid: ecc479a9ec5f7d042bec2e9926a8fb40, type: 3}
+  size: 1
   description: "6 pattes, \xE7a trace !"

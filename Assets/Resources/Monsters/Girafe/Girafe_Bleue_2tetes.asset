@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: Zizou
   sprite: {fileID: 21300000, guid: d35d7a5b1a5f26b4791a179f0364fb90, type: 3}
+  size: 1
   description: 2 coups de boule pour le prix d'un !

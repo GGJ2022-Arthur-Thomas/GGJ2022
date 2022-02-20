@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: "R\xE9mi"
   sprite: {fileID: 21300000, guid: 668d0a1a86cc657408837c2c03a483d6, type: 3}
+  size: 0.5
   description: "C\xE9l\xE8bre chef cuistot."

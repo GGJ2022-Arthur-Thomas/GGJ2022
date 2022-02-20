@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: Pistache
   sprite: {fileID: 21300000, guid: ecd331f53db65104e80d8c602b77f64a, type: 3}
+  size: 1
   description: "A nag\xE9 trop pr\xE8s des eaux us\xE9es."

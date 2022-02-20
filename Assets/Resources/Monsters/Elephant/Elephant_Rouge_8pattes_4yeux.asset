@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: Elephantor
   sprite: {fileID: 21300000, guid: 6ae6f4650a64a79458fc534e76f84519, type: 3}
+  size: 1
   description: "A trop tra\xEEn\xE9 dans la boue..."
