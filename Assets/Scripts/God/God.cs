@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class God : MonoBehaviour,
     IEventHandler<NewGodRequestEvent>
@@ -12,14 +13,23 @@ public class God : MonoBehaviour,
 
     [Header("Bulle")]
 
-    [SerializeField] private GameObject bulleGameObject;
-    [SerializeField] private Animator bulleAnimator;
-    [SerializeField] private TMP_Text bulleText;
+    [SerializeField]
+    private GameObject bulleGameObject;
+    [SerializeField]
+    private Animator bulleAnimator;
+    [SerializeField]
+    private TMP_Text bulleText;
 
     [Header("Hand")]
 
-    [SerializeField] private GameObject handGameObject;
-    [SerializeField] private Animator handAnimator;
+    [SerializeField]
+    private GameObject handGameObject;
+    [SerializeField]
+    private Animator handAnimator;
+
+    [Header("Progress")]
+    [SerializeField]
+    private Image progressImage;
 
     private float startShowTime;
 
@@ -44,7 +54,10 @@ public class God : MonoBehaviour,
 
     void Update()
     {
-        if (startShowTime != 0 && Time.time - startShowTime > showDuration)
+        float t = (Time.time - startShowTime) / showDuration; // between 0 and 1
+        progressImage.fillAmount = t;
+
+        if (startShowTime != 0 && t >= 1)
         {
             Hide();
             startShowTime = 0;
